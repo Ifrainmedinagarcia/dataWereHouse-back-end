@@ -6,6 +6,7 @@ const cors = require('cors')
 const PORT = 3000
 //require Routes
 const authRouter = require('./routers/auth.routes')
+const usersRouter = require('./routers/users.routes')
 
 //Middleware
 const app = express()
@@ -19,6 +20,7 @@ app.use(bodyParser.json())
 
 // route middleware
 app.use('/v1/api/auth', authRouter)
+app.use('/v1/api/users', usersRouter)
 
 
 

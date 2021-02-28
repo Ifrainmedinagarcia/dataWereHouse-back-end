@@ -44,15 +44,71 @@ const createUser = async (req, res) => {
     }
 }
 
-const getUser = async (req, res) => {
+const getUsers = async (req, res) => {
     try {
         await User.findAll().then(user => {
-            res(200).json({
+            res.status(200).json({
                 data: user
             })
         })
     } catch (error) {
-        res(500).json({
+        res.status(500).json({
+            message: 'Error inesperado del servidor',
+            error
+        })
+    }
+}
+
+const getUsersById = async (req, res) => {
+    try {
+        await User.findByPk(req.params.id).then(user => {
+            res.status(200).json({
+                data: user
+            })
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error inesperado del servidor',
+            error
+        })
+    }
+}
+
+const updateUsersById = async (req, res) => {
+    const { id_role } = req.body
+    try {
+        await User.update({
+            id_role
+        }, {
+            where: {
+                id_user: req.params.id
+            }
+        }).then(user => {
+            res.status(204).json({
+                message: 'Usuario Actualizado'
+            })
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error inesperado del servidor',
+            error
+        })
+    }
+}
+
+const deleteUserById = async (req, res) => {
+    try {
+        User.destroy({
+            where: {
+                id_user: req.params.id
+            }
+        }).then(user => {
+            res.status(204).json({
+                message: 'Usuario eliminado correctamente'
+            })
+        })
+    } catch (error) {
+        res.status(500).json({
             message: 'Error inesperado del servidor',
             error
         })
@@ -60,13 +116,8 @@ const getUser = async (req, res) => {
 }
 
 
-
-const updateUser = async (req, res) => {
-
-}
-
-
-
-const deleteUser = async (req, res) => {
-
-}
+exports.createUser = createUser
+exports.getUsers = getUsers
+exports.getUsersById = getUsersById
+exports.updateUsersById = updateUsersById
+exports.deleteUserById = deleteUserById
