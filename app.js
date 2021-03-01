@@ -28,4 +28,4 @@ app.listen(PORT, () => {
     console.log(`La app está iniciada en el puerto ${PORT}`)
 })
 
-module.exports = app    
+module.exports = app

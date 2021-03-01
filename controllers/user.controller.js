@@ -84,7 +84,7 @@ const updateUsersById = async (req, res) => {
                 id_user: req.params.id
             }
         }).then(user => {
-            res.status(204).json({
+            res.status(200).json({
                 message: 'Usuario Actualizado'
             })
         })
@@ -103,7 +103,7 @@ const deleteUserById = async (req, res) => {
                 id_user: req.params.id
             }
         }).then(user => {
-            res.status(204).json({
+            res.status(200).json({
                 message: 'Usuario eliminado correctamente'
             })
         })
