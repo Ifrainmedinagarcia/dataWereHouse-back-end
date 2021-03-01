@@ -32,8 +32,8 @@ const createUser = async (req, res) => {
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             res.status(400).json({
-                error,
-                message: 'Usuario ya existe'
+                message: 'Usuario ya existe',
+                error
             })
         } else {
             res.status(500).json({

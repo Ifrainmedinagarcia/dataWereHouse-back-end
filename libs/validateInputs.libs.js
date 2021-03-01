@@ -12,6 +12,23 @@ const schemaLogin = Joi.object({
     password_user: Joi.string().min(6).max(1024).required(),
 })
 
+const schemaInputRegion = Joi.object({
+    name_region: Joi.string().min(4).max(255).required()
+})
+
+const schemaInputCountry = Joi.object({
+    name_country: Joi.string().min(4).max(255).required(),
+    id_region: Joi.number()
+})
+
+const schemaInputCity = Joi.object({
+    name_city: Joi.string().min(4).max(255).required(),
+    id_country: Joi.number()
+})
+
 
 exports.schemaRegister = schemaRegister
 exports.schemaLogin = schemaLogin
+exports.schemaInputRegion = schemaInputRegion
+exports.schemaInputCountry = schemaInputCountry
+exports.schemaInputCity = schemaInputCity

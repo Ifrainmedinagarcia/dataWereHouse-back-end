@@ -1,10 +1,10 @@
 const express = require('express')
-const Region = require('../database/models/Region')
-const validateInput = require('../libs/validateInputs.libs').schemaInputRegion
+const City = require('../database/models/City')
+const validateInput = require('../libs/validateInputs.libs').schemaInputCity
 
-const createRegion = async (req, res) => {
-    const { name_region } = req.body
 
+const createCity = async (req, res) => {
+    const { name_city, id_country } = req.body
     const { error } = validateInput.validate(req.body)
     if (error) {
         return res.status(400).json({
@@ -12,12 +12,13 @@ const createRegion = async (req, res) => {
         })
     }
     try {
-        await Region.create({
-            name_region
-        }).then(region => {
+        await City.create({
+            name_city,
+            id_country
+        }).then(city => {
             res.status(201).json({
-                message: 'Región Creada',
-                data: region
+                message: 'Ciudad creada',
+                data: city
             })
         })
     } catch (error) {
@@ -27,11 +28,11 @@ const createRegion = async (req, res) => {
     }
 }
 
-const getRegion = async (req, res) => {
+const getCity = async (req, res) => {
     try {
-        await Region.findAll().then(region => {
+        await City.findAll().then(city => {
             res.status(200).json({
-                data: region
+                data: city
             })
         })
     } catch (error) {
@@ -40,19 +41,18 @@ const getRegion = async (req, res) => {
             error
         })
     }
-
 }
 
-const getRegionbyId = async (req, res) => {
+const getCityById = async (req, res) => {
     try {
-        await Region.findByPk(req.params.id).then(region => {
-            if (region !== null) {
+        await City.findByPk(req.params.id).then(city => {
+            if (city !== null) {
                 res.status(200).json({
-                    data: region
+                    data: city
                 })
-            }else{
+            } else {
                 res.status(404).json({
-                    message: 'Esta Región no ha sido registrada'
+                    message: 'Esta ciudad no ha sido registrada'
                 })
             }
         })
@@ -65,17 +65,17 @@ const getRegionbyId = async (req, res) => {
 
 }
 
-const updateRegionbyId = async (req, res) => {
-    const { name_region } = req.body
+const updateCityById = async (req, res) => {
+    const { name_city } = req.body
 
     try {
-        await Region.update({
-            name_region
+        await City.update({
+            name_city
         }, {
             where: {
-                id_region: req.params.id
+                id_city: req.params.id
             }
-        }).then(region => {
+        }).then(city => {
             res.status(200).json({
                 message: 'Región Actualizada'
             })
@@ -86,15 +86,16 @@ const updateRegionbyId = async (req, res) => {
             error
         })
     }
+
 }
 
-const deleteRegionbyId = async (req, res) => {
+const deleteCitybyId = async (req, res) => {
     try {
-        await Region.destroy({
+        await City.destroy({
             where: {
-                id_region: req.params.id
+                id_city: req.params.id
             }
-        }).then(region => {
+        }).then(city => {
             res.status(200).json({
                 message: 'Región eliminada'
             })
@@ -105,12 +106,10 @@ const deleteRegionbyId = async (req, res) => {
             error
         })
     }
-
 }
 
-
-exports.createRegion = createRegion
-exports.getRegion = getRegion
-exports.getRegionbyId = getRegionbyId
-exports.updateRegionbyId = updateRegionbyId
-exports.deleteRegionbyId = deleteRegionbyId
+exports.createCity = createCity
+exports.getCity = getCity
+exports.getCityById = getCityById
+exports.updateCityById = updateCityById
+exports.deleteCitybyId = deleteCitybyId

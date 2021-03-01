@@ -10,7 +10,7 @@ Country.init({
         autoIncrement: true,
         primaryKey: true
     },
-    name_region: {
+    name_country: {
         type: DataTypes.STRING
     },
     id_region: {
