@@ -18,18 +18,12 @@ Contact.init({
     name_contact: {
         type: DataTypes.STRING
     },
-    lastname_contac: {
-        type: DataTypes.STRING
-    },
-    password_contact: {
+    lastname_contact: {
         type: DataTypes.STRING
     },
     email_contact: {
         type: DataTypes.STRING,
         unique: true
-    },
-    date_creation: {
-        type: DataTypes.DATE
     },
     position: {
         type: DataTypes.INTEGER
@@ -62,7 +56,7 @@ Contact.init({
             key: 'id_city'
         }
     },
-    direction: {
+    address: {
         type: DataTypes.INTEGER
     },
     id_channel_comunication: {

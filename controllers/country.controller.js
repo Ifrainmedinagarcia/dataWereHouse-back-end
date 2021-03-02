@@ -22,10 +22,18 @@ const createCountry = async (req, res) => {
             })
         })
     } catch (error) {
-        res.status(500).json({
-            message: 'Error inesperado del servidor',
-            error
-        })
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            res.status(400).json({
+                message: 'País ya ingresado',
+                error
+            })
+        } else {
+            res.status(500).json({
+                message: 'Error inesperado del servidor',
+                error
+            })
+
+        }
     }
 }
 

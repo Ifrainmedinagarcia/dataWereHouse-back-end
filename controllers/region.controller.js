@@ -21,9 +21,16 @@ const createRegion = async (req, res) => {
             })
         })
     } catch (error) {
-        res.status(500).json({
-            message: 'Error inesperado del servidor'
-        })
+        if (error.name = 'SequelizeUniqueConstraintError') {
+            res.status(400).json({
+                message: 'Región ya ingresada',
+                error
+            })
+        } else {
+            res.status(500).json({
+                message: 'Error inesperado del servidor'
+            })
+        }
     }
 }
 
@@ -50,7 +57,7 @@ const getRegionbyId = async (req, res) => {
                 res.status(200).json({
                     data: region
                 })
-            }else{
+            } else {
                 res.status(404).json({
                     message: 'Esta Región no ha sido registrada'
                 })

@@ -11,7 +11,8 @@ Country.init({
         primaryKey: true
     },
     name_country: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     },
     id_region: {
         type: DataTypes.INTEGER,

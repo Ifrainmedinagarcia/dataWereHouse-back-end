@@ -9,6 +9,8 @@ const authRouter = require('./routers/auth.routes')
 const usersRouter = require('./routers/users.routes')
 const regionsRouter = require('./routers/region.routes')
 const countriesRouter = require('./routers/country.routes')
+const citiesRouter = require('./routers/city.routes')
+
 //Middleware
 const app = express()
 app.use(helmet())
@@ -24,6 +26,7 @@ app.use('/v1/api/auth', authRouter)
 app.use('/v1/api/users', usersRouter)
 app.use('/v1/api/regions', regionsRouter)
 app.use('/v1/api/countries', countriesRouter)
+app.use('/v1/api/cities', citiesRouter)
 
 
 

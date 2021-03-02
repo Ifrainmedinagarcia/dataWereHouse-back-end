@@ -10,7 +10,8 @@ Region.init({
         primaryKey: true
     },
     name_region: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     }
 
 }, {

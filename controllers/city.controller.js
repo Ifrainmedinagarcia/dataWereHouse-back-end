@@ -22,9 +22,17 @@ const createCity = async (req, res) => {
             })
         })
     } catch (error) {
-        res.status(500).json({
-            message: 'Error inesperado del servidor'
-        })
+        if (error.name = 'SequelizeUniqueConstraintError') {
+            res.status(400).json({
+                message: 'Ciudad ya ingresada',
+                error
+            })
+        } else {
+            res.status(500).json({
+                message: 'Error inesperado del servidor'
+            })
+
+        }
     }
 }
 
@@ -77,7 +85,7 @@ const updateCityById = async (req, res) => {
             }
         }).then(city => {
             res.status(200).json({
-                message: 'Región Actualizada'
+                message: 'País Actualizado'
             })
         })
     } catch (error) {
@@ -97,7 +105,7 @@ const deleteCitybyId = async (req, res) => {
             }
         }).then(city => {
             res.status(200).json({
-                message: 'Región eliminada'
+                message: 'País eliminado'
             })
         })
     } catch (error) {

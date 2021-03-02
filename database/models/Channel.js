@@ -10,7 +10,8 @@ Channel.init({
         primaryKey: true
     },
     name_channel: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     }
 
 }, {
