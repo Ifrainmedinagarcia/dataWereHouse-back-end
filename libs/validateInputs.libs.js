@@ -25,6 +25,13 @@ const schemaInputCity = Joi.object({
     name_city: Joi.string().min(4).max(255).required(),
     id_country: Joi.number()
 })
+const schemaInputCompany = Joi.object({
+    name_company: Joi.string().min(2).max(255).required(),
+    address: Joi.string().min(4).max(255).required(),
+    id_country: Joi.number(),
+    id_region: Joi.number(),
+    id_city: Joi.number()
+})
 const schemaInputContacts = Joi.object({
     name_contact: Joi.string().min(4).max(255).required(),
     lastname_contact: Joi.string().min(4).max(255).required(),
@@ -47,3 +54,4 @@ exports.schemaInputRegion = schemaInputRegion
 exports.schemaInputCountry = schemaInputCountry
 exports.schemaInputCity = schemaInputCity
 exports.schemaInputContacts = schemaInputContacts
+exports.schemaInputCompany = schemaInputCompany

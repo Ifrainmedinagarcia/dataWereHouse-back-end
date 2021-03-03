@@ -10,6 +10,7 @@ const usersRouter = require('./routers/users.routes')
 const regionsRouter = require('./routers/region.routes')
 const countriesRouter = require('./routers/country.routes')
 const citiesRouter = require('./routers/city.routes')
+const companiesRouter = require('./routers/company.routes')
 
 //Middleware
 const app = express()
@@ -27,6 +28,7 @@ app.use('/v1/api/users', usersRouter)
 app.use('/v1/api/regions', regionsRouter)
 app.use('/v1/api/countries', countriesRouter)
 app.use('/v1/api/cities', citiesRouter)
+app.use('/v1/api/companies', companiesRouter)
 
 
 

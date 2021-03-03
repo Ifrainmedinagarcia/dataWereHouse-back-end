@@ -85,7 +85,8 @@ const updateCountryById = async (req, res) => {
             }
         }).then(country => {
             res.status(200).json({
-                message: 'Región Actualizada'
+                message: 'Región Actualizada',
+                data: country
             })
         })
     } catch (error) {
@@ -98,7 +99,7 @@ const updateCountryById = async (req, res) => {
 
 const deleteCountryById = async (req, res) => {
     try {
-        Country.destroy({
+        await Country.destroy({
             where: {
                 id_country: req.params.id
             }
