@@ -41,8 +41,7 @@ const getRegion = async (req, res) => {
         await Region.findAll({
             include:[{
                 model: Country, 
-                as: 'Country',
-                attributes:['name_country']
+                as: 'Paises'
             }]
         }).then(region => {
             res.status(200).json({

@@ -11,8 +11,7 @@ Country.init({
         primaryKey: true
     },
     name_country: {
-        type: DataTypes.STRING,
-        unique: true
+        type: DataTypes.STRING
     },
 }, {
     sequelize,
