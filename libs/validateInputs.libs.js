@@ -19,19 +19,20 @@ const schemaInputRegion = Joi.object({
 
 const schemaInputCountry = Joi.object({
     name_country: Joi.string().min(4).max(255).required(),
-    id_region: Joi.number()
+    id_region: Joi.number(),
+    id_user: Joi.number()
 })
 
 const schemaInputCity = Joi.object({
     name_city: Joi.string().min(4).max(255).required(),
-    id_country: Joi.number()
+    id_country: Joi.number(),
+    id_user: Joi.number()
 })
 const schemaInputCompany = Joi.object({
     name_company: Joi.string().min(2).max(255).required(),
     address: Joi.string().min(4).max(255).required(),
     id_country: Joi.number(),
-    id_region: Joi.number(),
-    id_city: Joi.number()
+    id_user: Joi.number()
 })
 const schemaInputContacts = Joi.object({
     name_contact: Joi.string().min(4).max(255).required(),
@@ -46,6 +47,7 @@ const schemaInputContacts = Joi.object({
     id_city: Joi.number(),
     id_channel_comunication: Joi.number(),
     id_commitment: Joi.number(),
+    id_user: Joi.number()
 })
 
 

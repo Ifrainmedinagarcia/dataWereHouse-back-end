@@ -3,10 +3,11 @@ const Company = require('../database/models/Company')
 const validateInput = require('../libs/validateInputs.libs').schemaInputCompany
 const Country = require('../database/models/Country')
 require('../database/associations')
+const jwt = require('jsonwebtoken')
 
 
 const createCompany = async (req, res) => {
-    const { name_company, id_region, id_country, address, id_city, id_user } = req.body
+    const { name_company, id_country, address, id_user } = req.body
 
     const { error } = validateInput.validate(req.body)
     if (error) {
@@ -17,10 +18,8 @@ const createCompany = async (req, res) => {
     try {
         await Company.create({
             name_company,
-            id_region,
             id_country,
             address,
-            id_city,
             id_user
         }).then(company => {
             res.status(201).json({
@@ -48,11 +47,9 @@ const getCompany = async (req, res) => {
     const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
         await Company.findAll({
-            include: [
-                {
-                    model: Country, as: 'Country'
-                }
-            ],
+            include: [{
+                model: Country, as: 'Country'
+            }],
             where: {
                 id_user: verify.id_user
             }
@@ -75,11 +72,9 @@ const getCompanyById = async (req, res) => {
     const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
         await Company.findByPk(req.params.id, {
-            include: [
-                {
-                    model: Country, as: 'Country'
-                }
-            ],
+            include: [{
+                model: Country, as: 'Country'
+            }],
             where: {
                 id_user: verify.id_user
             }

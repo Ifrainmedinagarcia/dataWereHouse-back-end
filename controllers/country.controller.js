@@ -7,7 +7,7 @@ require('../database/associations')
 
 
 const createCountry = async (req, res) => {
-    const { name_country, id_region } = req.body
+    const { name_country, id_region, id_user } = req.body
 
     const { error } = validateInput.validate(req.body)
     if (error) {
@@ -18,7 +18,8 @@ const createCountry = async (req, res) => {
     try {
         await Country.create({
             name_country,
-            id_region
+            id_region,
+            id_user
         }).then(country => {
             res.status(201).json({
                 message: 'País Creado',

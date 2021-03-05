@@ -2,10 +2,12 @@ const express = require('express')
 const City = require('../database/models/City')
 const Country = require('../database/models/Country')
 const validateInput = require('../libs/validateInputs.libs').schemaInputCity
+const jwt = require('jsonwebtoken')
+require('../database/associations')
 
 
 const createCity = async (req, res) => {
-    const { name_city, id_country } = req.body
+    const { name_city, id_country, id_user } = req.body
     const { error } = validateInput.validate(req.body)
     if (error) {
         return res.status(400).json({
@@ -15,7 +17,8 @@ const createCity = async (req, res) => {
     try {
         await City.create({
             name_city,
-            id_country
+            id_country,
+            id_user
         }).then(city => {
             res.status(201).json({
                 message: 'Ciudad creada',
@@ -38,8 +41,14 @@ const createCity = async (req, res) => {
 }
 
 const getCity = async (req, res) => {
+    const token = req.header('Authorization')
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
-        await City.findAll().then(city => {
+        await City.findAll({
+            where: {
+                id_user: verify.id_user
+            }
+        }).then(city => {
             res.status(200).json({
                 data: city
             })
