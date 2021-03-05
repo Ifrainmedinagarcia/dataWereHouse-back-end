@@ -12,8 +12,8 @@ Region.init({
     name_region: {
         type: DataTypes.STRING,
         unique: true
-    }
-
+    },
+    
 }, {
     sequelize,
     tableName: 'regions'

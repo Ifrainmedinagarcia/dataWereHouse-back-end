@@ -1,5 +1,6 @@
 const express = require('express')
 const City = require('../database/models/City')
+const Country = require('../database/models/Country')
 const validateInput = require('../libs/validateInputs.libs').schemaInputCity
 
 
@@ -38,7 +39,14 @@ const createCity = async (req, res) => {
 
 const getCity = async (req, res) => {
     try {
-        await City.findAll().then(city => {
+        await City.findAll({
+            include: [{
+                model: Country,
+                where: { name_country: 'name_country'},
+                required: false
+              }]
+            
+        }).then(city => {
             res.status(200).json({
                 data: city
             })

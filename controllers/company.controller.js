@@ -1,5 +1,6 @@
 const express = require('express')
 const Company = require('../database/models/Company')
+const City = require('../database/models/City')
 const validateInput = require('../libs/validateInputs.libs').schemaInputCompany
 
 
@@ -30,7 +31,7 @@ const createCompany = async (req, res) => {
             res.status(400).json({
                 message: 'Companía ya registrada',
                 error
-        })
+            })
         } else {
             res.status(500).json({
                 message: 'Error inesperado del servidor',
@@ -42,7 +43,15 @@ const createCompany = async (req, res) => {
 
 const getCompany = async (req, res) => {
     try {
-        await Company.findAll().then(company => {
+        await Company.findAll({
+            include: [
+                {
+                    model: City, as: 'city',
+                    attributes: ['name_city']
+                }
+            ]
+
+        }).then(company => {
             res.status(200).json({
                 data: company
             })
@@ -111,13 +120,13 @@ const updateCompanyById = async (req, res) => {
     }
 }
 
-const deleteCompanyById = async (req, res) =>{
+const deleteCompanyById = async (req, res) => {
     try {
         await Company.destroy({
-            where:{
+            where: {
                 id_company: req.params.id
             }
-        }).then(company =>{
+        }).then(company => {
             res.status(200).json({
                 message: 'Compañía eliminada correctamente'
             })

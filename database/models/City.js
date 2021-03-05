@@ -14,14 +14,7 @@ City.init({
         type: DataTypes.STRING,
         unique: true
     },
-    id_country: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Country,
-            key: 'id_country'
-        }
-    }
-
+ 
 }, {
     sequelize,
     tableName: 'cities'

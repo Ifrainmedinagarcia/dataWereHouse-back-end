@@ -14,14 +14,6 @@ Country.init({
         type: DataTypes.STRING,
         unique: true
     },
-    id_region: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Region,
-            key: 'id_region'
-        }
-    }
-
 }, {
     sequelize,
     tableName: 'countries'

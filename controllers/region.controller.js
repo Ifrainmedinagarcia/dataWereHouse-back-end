@@ -1,6 +1,8 @@
 const express = require('express')
 const Region = require('../database/models/Region')
 const validateInput = require('../libs/validateInputs.libs').schemaInputRegion
+const Country = require('../database/models/Country')
+require('../database/associations')
 
 const createRegion = async (req, res) => {
     const { name_region } = req.body
@@ -36,7 +38,13 @@ const createRegion = async (req, res) => {
 
 const getRegion = async (req, res) => {
     try {
-        await Region.findAll().then(region => {
+        await Region.findAll({
+            include:[{
+                model: Country, 
+                as: 'Country',
+                attributes:['name_country']
+            }]
+        }).then(region => {
             res.status(200).json({
                 data: region
             })
