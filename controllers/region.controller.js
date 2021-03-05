@@ -2,10 +2,13 @@ const express = require('express')
 const Region = require('../database/models/Region')
 const validateInput = require('../libs/validateInputs.libs').schemaInputRegion
 const Country = require('../database/models/Country')
+const User = require('../database/models/User')
+const jwt = require('jsonwebtoken')
 require('../database/associations')
 
+
 const createRegion = async (req, res) => {
-    const { name_region } = req.body
+    const { name_region, id_user } = req.body
 
     const { error } = validateInput.validate(req.body)
     if (error) {
@@ -15,7 +18,8 @@ const createRegion = async (req, res) => {
     }
     try {
         await Region.create({
-            name_region
+            name_region,
+            id_user
         }).then(region => {
             res.status(201).json({
                 message: 'Región Creada',
@@ -37,12 +41,18 @@ const createRegion = async (req, res) => {
 }
 
 const getRegion = async (req, res) => {
+    const token = req.header('Authorization')
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
         await Region.findAll({
-            include:[{
-                model: Country, 
+            include: [{
+                model: Country,
                 as: 'Paises'
-            }]
+            }],
+            where: {
+                id_user: verify.id_user
+            }
+
         }).then(region => {
             res.status(200).json({
                 data: region
@@ -58,8 +68,18 @@ const getRegion = async (req, res) => {
 }
 
 const getRegionbyId = async (req, res) => {
+    const token = req.header('Authorization')
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
-        await Region.findByPk(req.params.id).then(region => {
+        await Region.findByPk(req.params.id, {
+            include: [{
+                model: Country,
+                as: 'Paises'
+            }],
+            where: {
+                id_user: verify.id_user
+            }
+        }).then(region => {
             if (region !== null) {
                 res.status(200).json({
                     data: region

@@ -11,7 +11,7 @@ router.get('/:id', verifyToken.verifyToken, countryController.getCountryById)
 
 router.put('/:id', verifyToken.verifyToken, countryController.updateCountryById)
 
-router.delete('/:id', [verifyToken.verifyToken, verifyToken.isAdmin], countryController.deleteCountryById)
+router.delete('/:id', verifyToken.verifyToken, countryController.deleteCountryById)
 
 
 module.exports = router

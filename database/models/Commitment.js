@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
-const Region = require('./Region')
 
 class Commitment extends Model { }
 
@@ -15,7 +14,8 @@ Commitment.init({
     }
 }, {
     sequelize,
-    tableName: 'commitments'
+    tableName: 'commitments',
+    timestamps: false
 })
 
 module.exports = Commitment

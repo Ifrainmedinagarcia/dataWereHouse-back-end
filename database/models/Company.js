@@ -14,10 +14,10 @@ Company.init({
     },
     name_company: {
         type: DataTypes.STRING,
-        unique: true
     },
     address: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     }
 
 }, {

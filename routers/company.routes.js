@@ -11,7 +11,7 @@ router.get('/:id', verifyToken.verifyToken, companyController.getCompanyById)
 
 router.put('/:id', verifyToken.verifyToken, companyController.updateCompanyById)
 
-router.delete('/:id', [verifyToken.verifyToken, verifyToken.isAdmin], companyController.deleteCompanyById)
+router.delete('/:id', verifyToken.verifyToken, companyController.deleteCompanyById)
 
 
 module.exports = router

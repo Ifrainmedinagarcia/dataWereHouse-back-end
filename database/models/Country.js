@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
-const Region = require('./Region')
 
 class Country extends Model { }
 
@@ -12,7 +11,7 @@ Country.init({
     },
     name_country: {
         type: DataTypes.STRING
-    },
+    }
 }, {
     sequelize,
     tableName: 'countries'

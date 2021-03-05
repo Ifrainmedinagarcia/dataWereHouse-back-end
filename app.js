@@ -17,6 +17,7 @@ const app = express()
 app.use(helmet())
 app.use(cors())
 
+
 // capture body
 // cambiar bode-parser por express.bodyparser 
 app.use(bodyParser.urlencoded({ extended: false }))

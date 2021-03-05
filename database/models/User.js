@@ -30,7 +30,6 @@ User.init({
             key: 'id_role'
         }
     }
-
 }, {
     sequelize,
     tableName: 'users'

@@ -13,7 +13,8 @@ const schemaLogin = Joi.object({
 })
 
 const schemaInputRegion = Joi.object({
-    name_region: Joi.string().min(4).max(255).required()
+    name_region: Joi.string().min(4).max(255).required(),
+    id_user: Joi.number()
 })
 
 const schemaInputCountry = Joi.object({

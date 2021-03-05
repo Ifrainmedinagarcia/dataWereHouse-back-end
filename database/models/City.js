@@ -11,8 +11,7 @@ City.init({
         primaryKey: true
     },
     name_city: {
-        type: DataTypes.STRING,
-        unique: true
+        type: DataTypes.STRING
     },
  
 }, {

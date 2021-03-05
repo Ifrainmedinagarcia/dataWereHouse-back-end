@@ -1,8 +1,7 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
 
-class Role extends Model { }
-
+class Role extends Model {}
 Role.init({
     id_role: {
         type: DataTypes.INTEGER,
@@ -14,7 +13,8 @@ Role.init({
     }
 }, {
     sequelize,
-    tableName: 'roles'
+    tableName: 'roles',
+    timestamps: false
 })
 
 module.exports = Role

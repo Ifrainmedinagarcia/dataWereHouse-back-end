@@ -1,6 +1,10 @@
 const express = require('express')
 const Country = require('../database/models/Country')
 const validateInput = require('../libs/validateInputs.libs').schemaInputCountry
+const City = require('../database/models/City')
+const jwt = require('jsonwebtoken')
+require('../database/associations')
+
 
 const createCountry = async (req, res) => {
     const { name_country, id_region } = req.body
@@ -38,8 +42,18 @@ const createCountry = async (req, res) => {
 }
 
 const getCountry = async (req, res) => {
+    const token = req.header('Authorization')
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
-        await Country.findAll().then(country => {
+        await Country.findAll({
+            include: [{
+                model: City,
+                as: 'City'
+            }],
+            where: {
+                id_user: verify.id_user
+            }
+        }).then(country => {
             res.status(200).json({
                 data: country
             })
@@ -53,15 +67,24 @@ const getCountry = async (req, res) => {
 }
 
 const getCountryById = async (req, res) => {
+    const token = req.header('Authorization')
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
-        await Country.findByPk(req.params.id).then(country => {
+        await Country.findByPk(req.params.id, {
+            include: [{
+                model: City, as: 'City'
+            }],
+            where: {
+                id_user: verify.id_user
+            }
+        }).then(country => {
             if (country !== null) {
                 res.status(200).json({
                     data: country
                 })
             } else {
                 res.status(404).json({
-                    message: 'Esta País no ha sido registrado'
+                    message: 'Este País no ha sido registrado'
                 })
             }
         })

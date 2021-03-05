@@ -16,7 +16,8 @@ Channel.init({
 
 }, {
     sequelize,
-    tableName: 'channels'
+    tableName: 'channels',
+    timestamps: false
 })
 
 module.exports = Channel

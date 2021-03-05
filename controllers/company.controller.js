@@ -1,11 +1,12 @@
 const express = require('express')
 const Company = require('../database/models/Company')
-const City = require('../database/models/City')
 const validateInput = require('../libs/validateInputs.libs').schemaInputCompany
+const Country = require('../database/models/Country')
+require('../database/associations')
 
 
 const createCompany = async (req, res) => {
-    const { name_company, id_region, id_country, address, id_city } = req.body
+    const { name_company, id_region, id_country, address, id_city, id_user } = req.body
 
     const { error } = validateInput.validate(req.body)
     if (error) {
@@ -19,7 +20,8 @@ const createCompany = async (req, res) => {
             id_region,
             id_country,
             address,
-            id_city
+            id_city,
+            id_user
         }).then(company => {
             res.status(201).json({
                 message: 'Compañía creada',
@@ -42,14 +44,18 @@ const createCompany = async (req, res) => {
 }
 
 const getCompany = async (req, res) => {
+    const token = req.header('Authorization')
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
         await Company.findAll({
             include: [
                 {
-                    model: City, as: 'city',
-                    attributes: ['name_city']
+                    model: Country, as: 'Country'
                 }
-            ]
+            ],
+            where: {
+                id_user: verify.id_user
+            }
 
         }).then(company => {
             res.status(200).json({
@@ -65,8 +71,19 @@ const getCompany = async (req, res) => {
 }
 
 const getCompanyById = async (req, res) => {
+    const token = req.header('Authorization')
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET)
     try {
-        await Company.findByPk(req.params.id).then(company => {
+        await Company.findByPk(req.params.id, {
+            include: [
+                {
+                    model: Country, as: 'Country'
+                }
+            ],
+            where: {
+                id_user: verify.id_user
+            }
+        }).then(company => {
             if (company !== null) {
                 res.status(200).json({
                     data: company

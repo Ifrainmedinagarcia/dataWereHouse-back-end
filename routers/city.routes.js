@@ -11,7 +11,7 @@ router.get('/:id', verifyToken.verifyToken, cityController.getCityById)
 
 router.put('/:id', verifyToken.verifyToken, cityController.updateCityById)
 
-router.delete('/:id', [verifyToken.verifyToken, verifyToken.isAdmin], cityController.deleteCitybyId)
+router.delete('/:id', verifyToken.verifyToken, cityController.deleteCitybyId)
 
 
 module.exports = router
