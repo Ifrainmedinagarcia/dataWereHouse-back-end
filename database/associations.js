@@ -39,7 +39,9 @@ User.hasMany(Company, { as: 'Company', foreignKey: 'id_user' })
 
 Country.hasMany(City, { as: 'City', foreignKey: 'id_country' })
 
-/* Country.hasMany(Company, { as: 'Compania', foreignKey: 'id_country' }) */
+Country.hasMany(Company, { as: 'Pais', foreignKey: 'id_country' })
+
+Company.belongsTo(Country, { as: 'Country', foreignKey: 'id_country' })
 
 User.hasMany(City, { as: 'Ciudad', foreignKey: 'id_user' })
 

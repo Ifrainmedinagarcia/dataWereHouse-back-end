@@ -17,7 +17,6 @@ Company.init({
     },
     address: {
         type: DataTypes.STRING,
-        unique: true
     }
 
 }, {
