@@ -18,7 +18,6 @@ Company.init({
     address: {
         type: DataTypes.STRING,
     }
-
 }, {
     sequelize,
     tableName: 'companies'
