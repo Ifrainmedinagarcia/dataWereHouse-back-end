@@ -26,10 +26,10 @@ Contact.init({
         unique: true
     },
     position: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     address: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     contact_account: {
         type: DataTypes.STRING
@@ -39,4 +39,4 @@ Contact.init({
     tableName: 'contacts'
 })
 
-module.exports = Contact
+module.exports = Contact    
