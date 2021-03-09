@@ -20,7 +20,7 @@ const createContact = async (req, res) => {
         id_region,
         id_country,
         id_city,
-        id_photos,
+        id_photo,
         address,
         id_channel_comunication,
         id_commitment,
@@ -37,7 +37,7 @@ const createContact = async (req, res) => {
     try {
         await Contact.create({
             name_contact,
-            id_photos,
+            id_photo,
             lastname_contact,
             email_contact,
             position,
@@ -79,9 +79,9 @@ const getContacts = async (req, res) => {
                 model: Channel
             }, {
                 model: Commitment
-            },{
+            }, {
                 model: Photo,
-                as:'Photo'
+                as: 'Photo'
             }],
             where: {
                 id_user: verify.id_user
@@ -114,6 +114,9 @@ const getContactById = async (req, res) => {
                 model: Channel
             }, {
                 model: Commitment
+            }, {
+                model: Photo,
+                as: 'Photo'
             }],
             where: {
                 id_user: verify.id_user
@@ -146,6 +149,7 @@ const updateContactById = async (req, res) => {
         position,
         id_company,
         id_region,
+        id_photo,
         id_country,
         id_city,
         address,
@@ -159,6 +163,7 @@ const updateContactById = async (req, res) => {
             lastname_contact,
             email_contact,
             position,
+            id_photo,
             id_company,
             id_region,
             id_country,

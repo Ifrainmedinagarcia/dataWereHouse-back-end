@@ -46,4 +46,3 @@ Contact.belongsTo(City, { foreignKey: 'id_city'})
 Contact.belongsTo(Commitment, { foreignKey: 'id_commitment' })
 
 Contact.belongsTo(Channel, { foreignKey: 'id_channel_comunication' })
-

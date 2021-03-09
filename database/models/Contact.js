@@ -12,6 +12,10 @@ Contact.init({
     name_contact: {
         type: DataTypes.STRING
     },
+    profileImageDefault: {
+        type: DataTypes.STRING,
+        defaultValue: 'https://imageprofileproject.s3.amazonaws.com/fotopredeterminada.png'
+    },
     lastname_contact: {
         type: DataTypes.STRING
     },

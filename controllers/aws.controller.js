@@ -32,6 +32,7 @@ const upload = multer({
 }).single("file")
 
 const uploadImage = async (req, res) => {
+
     const myFile = req.file.originalname.split('.')
     const fileType = myFile[myFile.length - 1]
 
@@ -52,13 +53,16 @@ const uploadImage = async (req, res) => {
             Photo.create({
                 urlPhoto_contact: data.Location
             }).then(photo => {
-                    res.status(200).json({
-                        message: 'Imagen subida con éxito',
-                        data: photo
-                    })
+                res.status(200).json({
+                    message: 'Imagen subida con éxito',
+                    data: photo
                 })
+            })
         } catch (error) {
-
+            return res.status(500).json({
+                message: 'error al subir imagen',
+                error
+            })
         }
 
     })
