@@ -41,6 +41,7 @@ const schemaInputContacts = Joi.object({
     address: Joi.string().min(4).max(255).required(),
     contact_account: Joi.string().min(4).max(255).required(),
     email_contact: Joi.string().min(6).max(255).required().email(),
+    id_photos: Joi.number(),
     id_company: Joi.number(),
     id_region: Joi.number(),
     id_country: Joi.number(),

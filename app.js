@@ -12,11 +12,11 @@ const countriesRouter = require('./routers/country.routes')
 const citiesRouter = require('./routers/city.routes')
 const companiesRouter = require('./routers/company.routes')
 const contactsRouter = require('./routers/contacts.routes')
+const uploadRouter = require('./routers/aws.router')
 //Middleware
 const app = express()
 app.use(helmet())
 app.use(cors())
-
 
 // capture body
 // cambiar bode-parser por express.bodyparser 
@@ -31,6 +31,7 @@ app.use('/v1/api/countries', countriesRouter)
 app.use('/v1/api/cities', citiesRouter)
 app.use('/v1/api/companies', companiesRouter)
 app.use('/v1/api/contacts', contactsRouter)
+app.use('/v1/api/file/upload', uploadRouter)
 
 
 

@@ -7,6 +7,8 @@ const Commitment = require('../database/models/Commitment')
 const Country = require('../database/models/Country')
 const validateInput = require('../libs/validateInputs.libs').schemaInputContacts
 const jwt = require('jsonwebtoken')
+const Photo = require('../database/models/urlPhotos')
+require('dotenv').config()
 
 const createContact = async (req, res) => {
     const {
@@ -18,6 +20,7 @@ const createContact = async (req, res) => {
         id_region,
         id_country,
         id_city,
+        id_photos,
         address,
         id_channel_comunication,
         id_commitment,
@@ -34,6 +37,7 @@ const createContact = async (req, res) => {
     try {
         await Contact.create({
             name_contact,
+            id_photos,
             lastname_contact,
             email_contact,
             position,
@@ -75,6 +79,9 @@ const getContacts = async (req, res) => {
                 model: Channel
             }, {
                 model: Commitment
+            },{
+                model: Photo,
+                as:'Photo'
             }],
             where: {
                 id_user: verify.id_user
@@ -202,7 +209,6 @@ const deleteContactById = async (req, res) => {
         })
     }
 }
-
 
 exports.createContact = createContact
 

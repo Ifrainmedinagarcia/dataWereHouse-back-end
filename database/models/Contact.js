@@ -1,11 +1,5 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
-const Company = require('./Company')
-const Region = require('./Region')
-const Country = require('./Country')
-const City = require('./City')
-const Commitment = require('./Commitment')
-const Channel = require('./Channel')
 
 class Contact extends Model { }
 
