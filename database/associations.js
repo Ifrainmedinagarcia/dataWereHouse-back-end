@@ -7,6 +7,7 @@ const Country = require('./models/Country')
 const Region = require('./models/Region')
 const User = require('./models/User')
 const Photo = require('../database/models/urlPhotos')
+const Preferences = require('../database/models/Preferences')
 
 
 Region.hasMany(Country, { as: 'Paises', foreignKey: 'id_region', onDelete: 'cascade', hooks: true })
@@ -28,7 +29,9 @@ User.hasMany(City, { as: 'Ciudad', foreignKey: 'id_user' })
 User.hasMany(Contact, { as: 'Contactos', foreignKey: 'id_user', onDelete: 'cascade', hooks: true })
 
 
-Contact.belongsTo(Photo, { as:'Photo', foreignKey: 'id_photos' })
+Contact.belongsTo(Photo, { as:'Photo', foreignKey: 'id_photo' })
+
+User.belongsTo(Photo, { foreignKey: 'id_photo' })
 
 
 Contact.belongsTo(Company, { foreignKey: 'id_company'})
@@ -44,5 +47,9 @@ Contact.belongsTo(City, { foreignKey: 'id_city'})
 
 
 Contact.belongsTo(Commitment, { foreignKey: 'id_commitment' })
+
+
+Contact.belongsTo(Preferences, { foreignKey:'id_preference', onDelete: 'cascade', hooks: true } )
+
 
 Contact.belongsTo(Channel, { foreignKey: 'id_channel_comunication' })

@@ -19,6 +19,10 @@ User.init({
     password_user: {
         type: DataTypes.STRING
     },
+    profileImageDefault: {
+        type: DataTypes.STRING,
+        defaultValue: 'https://imageprofileproject.s3.amazonaws.com/fotopredeterminada.png'
+    },
     email_user: {
         type: DataTypes.STRING,
         unique: true

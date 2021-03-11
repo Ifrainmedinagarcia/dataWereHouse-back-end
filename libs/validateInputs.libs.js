@@ -4,7 +4,8 @@ const schemaRegister = Joi.object({
     lastname_user: Joi.string().min(6).max(255).required(),
     email_user: Joi.string().min(6).max(255).required().email(),
     password_user: Joi.string().min(6).max(1024).required(),
-    id_role: Joi.number()
+    id_role: Joi.number(),
+    id_photo: Joi.number()
 })
 
 const schemaLogin = Joi.object({
@@ -43,6 +44,7 @@ const schemaInputContacts = Joi.object({
     email_contact: Joi.string().min(6).max(255).required().email(),
     profileImageDefault: Joi.string().min(6).max(1024),
     id_photo: Joi.number(),
+    id_preference: Joi.number(),
     id_company: Joi.number(),
     id_region: Joi.number(),
     id_country: Joi.number(),

@@ -1,20 +1,21 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
 
-class Region extends Model { }
+class Preferences extends Model { }
 
-Region.init({
-    id_region: {
+Preferences.init({
+    id_preference: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    name_region: {
+    name_preference: {
         type: DataTypes.STRING
     }
 }, {
     sequelize,
-    tableName: 'regions'
+    tableName: 'preferences',
+    timestamps: false
 })
 
-module.exports = Region
+module.exports = Preferences

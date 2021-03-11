@@ -7,12 +7,14 @@ const Commitment = require('../database/models/Commitment')
 const Country = require('../database/models/Country')
 const validateInput = require('../libs/validateInputs.libs').schemaInputContacts
 const jwt = require('jsonwebtoken')
+const Preference = require('../database/models/Preferences')
 const Photo = require('../database/models/urlPhotos')
 require('dotenv').config()
 
 const createContact = async (req, res) => {
     const {
         name_contact,
+        id_preference,
         lastname_contact,
         email_contact,
         position,
@@ -38,6 +40,7 @@ const createContact = async (req, res) => {
         await Contact.create({
             name_contact,
             id_photo,
+            id_preference,
             lastname_contact,
             email_contact,
             position,
@@ -70,18 +73,24 @@ const getContacts = async (req, res) => {
     try {
         await Contact.findAll({
             include: [{
-                model: Region
+                model: Region,
+                attributes:['id_region', 'name_region']
             }, {
-                model: Country
+                model: Country,
+                attributes:['id_country', 'name_country']
             }, {
-                model: Company
+                model: Company,
+                attributes:['id_company', 'name_company', 'address']
             }, {
                 model: Channel
             }, {
                 model: Commitment
             }, {
                 model: Photo,
-                as: 'Photo'
+                as: 'Photo',
+                attributes:['id_photo', 'urlPhoto_contact']
+            },{
+                model: Preference
             }],
             where: {
                 id_user: verify.id_user
@@ -105,18 +114,24 @@ const getContactById = async (req, res) => {
     try {
         await Contact.findByPk(req.params.id, {
             include: [{
-                model: Region
+                model: Region,
+                attributes:['id_region', 'name_region']
             }, {
-                model: Country
+                model: Country,
+                attributes:['id_country', 'name_country']
             }, {
-                model: Company
+                model: Company,
+                attributes:['id_company', 'name_company', 'address']
             }, {
                 model: Channel
             }, {
                 model: Commitment
             }, {
                 model: Photo,
-                as: 'Photo'
+                as: 'Photo',
+                attributes:['id_photo', 'urlPhoto_contact']
+            },{
+                model: Preference
             }],
             where: {
                 id_user: verify.id_user

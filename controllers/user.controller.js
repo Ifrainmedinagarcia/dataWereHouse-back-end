@@ -1,6 +1,7 @@
 const sequelize = require('../database/db')
 const bcrypt = require('bcrypt')
 const User = require('../database/models/User')
+const Photo = require('../database/models/urlPhotos')
 const validateRegister = require('../libs/validateInputs.libs').schemaRegister
 
 const createUser = async (req, res) => {
@@ -61,7 +62,12 @@ const getUsers = async (req, res) => {
 
 const getUsersById = async (req, res) => {
     try {
-        await User.findByPk(req.params.id).then(user => {
+        await User.findByPk(req.params.id, {
+            include: [{
+                model: Photo,
+                attributes: ['id_photo', 'urlPhoto_contact']
+            }]
+        }).then(user => {
             res.status(200).json({
                 data: user
             })
@@ -75,10 +81,11 @@ const getUsersById = async (req, res) => {
 }
 
 const updateUsersById = async (req, res) => {
-    const { id_role } = req.body
+    const { id_role, id_photo } = req.body
     try {
         await User.update({
-            id_role
+            id_role,
+            id_photo
         }, {
             where: {
                 id_user: req.params.id

@@ -64,7 +64,6 @@ const uploadImage = async (req, res) => {
                 error
             })
         }
-
     })
 }
 

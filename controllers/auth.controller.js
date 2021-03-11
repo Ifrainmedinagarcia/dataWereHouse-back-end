@@ -59,7 +59,7 @@ const singIn = async (req, res) => {
 }
 
 const singUp = async (req, res) => {
-    const { name_user, lastname_user, password_user, email_user, id_role } = req.body
+    const { name_user, lastname_user, password_user, email_user, id_role, id_photo } = req.body
 
     const { error } = validateRegister.validate(req.body)
     if (error) {
@@ -78,7 +78,8 @@ const singUp = async (req, res) => {
             lastname_user,
             password_user: passwordHash,
             email_user,
-            id_role
+            id_role,
+            id_photo
         }).then(user => {
             res.status(201).json({
                 message: 'usuario creado',
