@@ -15,7 +15,7 @@ const singIn = async (req, res) => {
     }
     try {
         let user = await User.findAll({
-            where:{
+            where: {
                 email_user: req.body.email_user
             }
         })
@@ -37,11 +37,12 @@ const singIn = async (req, res) => {
                     id_user: user.id_user,
                     id_role: user.id_role
                 }, process.env.TOKEN_SECRET, {
-                    expiresIn: process.env.EXPIRES
+                    expiresIn: 60*60*24
                 })
                 res.status(200).header('Authorization', token).json({
                     error: null,
-                    data: `Bienvenido ${user.name_user}`,
+                    data: `Bienvenid@ ${user.name_user}`,
+                    user,
                     token
                 })
             } else {
@@ -73,7 +74,7 @@ const singUp = async (req, res) => {
     const passwordHash = await bcrypt.hash(password_user, salt)
 
     try {
-        User.create({
+        await User.create({
             name_user,
             lastname_user,
             password_user: passwordHash,

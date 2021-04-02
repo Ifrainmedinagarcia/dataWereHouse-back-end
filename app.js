@@ -13,6 +13,9 @@ const citiesRouter = require('./routers/city.routes')
 const companiesRouter = require('./routers/company.routes')
 const contactsRouter = require('./routers/contacts.routes')
 const uploadRouter = require('./routers/aws.router')
+const channelRouter = require('./routers/channel.routes')
+const preferenceReouter = require('./routers/preferences.routes')
+const commimentRouter = require('./routers/commiment.routes')
 //Middleware
 const app = express()
 app.use(helmet())
@@ -32,8 +35,9 @@ app.use('/v1/api/cities', citiesRouter)
 app.use('/v1/api/companies', companiesRouter)
 app.use('/v1/api/contacts', contactsRouter)
 app.use('/v1/api/file/upload', uploadRouter)
-
-
+app.use('/v1/api/channels', channelRouter)
+app.use('/v1/api/preferences', preferenceReouter)
+app.use('/v1/api/commiment', commimentRouter)
 
 app.listen(PORT, () => {
     console.log(`La app está iniciada en el puerto ${PORT}`)
