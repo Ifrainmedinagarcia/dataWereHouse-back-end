@@ -3,6 +3,7 @@ const Region = require('../database/models/Region')
 const validateInput = require('../libs/validateInputs.libs').schemaInputRegion
 const Country = require('../database/models/Country')
 const User = require('../database/models/User')
+const City = require('../database/models/City')
 const jwt = require('jsonwebtoken')
 require('../database/associations')
 
@@ -47,7 +48,11 @@ const getRegion = async (req, res) => {
         await Region.findAll({
             include: [{
                 model: Country,
-                as: 'Paises'
+                as: 'Paises',
+                include: [{
+                    model: City,
+                    as: 'City'
+                }]
             }],
             where: {
                 id_user: verify.id_user
@@ -74,7 +79,11 @@ const getRegionbyId = async (req, res) => {
         await Region.findByPk(req.params.id, {
             include: [{
                 model: Country,
-                as: 'Paises'
+                as: 'Paises',
+                include: [{
+                    model: City,
+                    as: 'City'
+                }]
             }],
             where: {
                 id_user: verify.id_user

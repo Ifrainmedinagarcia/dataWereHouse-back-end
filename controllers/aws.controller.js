@@ -32,7 +32,6 @@ const upload = multer({
 }).single("file")
 
 const uploadImage = async (req, res) => {
-
     const myFile = req.file.originalname.split('.')
     const fileType = myFile[myFile.length - 1]
 
