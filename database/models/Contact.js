@@ -4,7 +4,7 @@ const sequelize = require('../db')
 class Contact extends Model { }
 
 Contact.init({
-    id_contact: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -37,4 +37,4 @@ Contact.init({
     tableName: 'contacts'
 })
 
-module.exports = Contact    
+module.exports = Contact

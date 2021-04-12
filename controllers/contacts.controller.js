@@ -74,13 +74,13 @@ const getContacts = async (req, res) => {
         await Contact.findAll({
             include: [{
                 model: Region,
-                attributes:['id_region', 'name_region']
+                attributes: ['id_region', 'name_region']
             }, {
                 model: Country,
-                attributes:['id_country', 'name_country']
+                attributes: ['id_country', 'name_country']
             }, {
                 model: Company,
-                attributes:['id_company', 'name_company', 'address']
+                attributes: ['id_company', 'name_company', 'address']
             }, {
                 model: Channel
             }, {
@@ -88,8 +88,8 @@ const getContacts = async (req, res) => {
             }, {
                 model: Photo,
                 as: 'Photo',
-                attributes:['id_photo', 'urlPhoto_contact']
-            },{
+                attributes: ['urlPhoto_contact']
+            }, {
                 model: Preference
             }],
             where: {
@@ -115,13 +115,13 @@ const getContactById = async (req, res) => {
         await Contact.findByPk(req.params.id, {
             include: [{
                 model: Region,
-                attributes:['id_region', 'name_region']
+                attributes: ['id_region', 'name_region']
             }, {
                 model: Country,
-                attributes:['id_country', 'name_country']
+                attributes: ['id_country', 'name_country']
             }, {
                 model: Company,
-                attributes:['id_company', 'name_company', 'address']
+                attributes: ['id_company', 'name_company']
             }, {
                 model: Channel
             }, {
@@ -129,8 +129,8 @@ const getContactById = async (req, res) => {
             }, {
                 model: Photo,
                 as: 'Photo',
-                attributes:['id_photo', 'urlPhoto_contact']
-            },{
+                attributes: ['id_photo', 'urlPhoto_contact']
+            }, {
                 model: Preference
             }],
             where: {
@@ -189,7 +189,7 @@ const updateContactById = async (req, res) => {
             contact_account
         }, {
             where: {
-                id_contact: req.params.id
+                id: req.params.id
             }
         }).then(contact => {
             if (contact !== null) {
@@ -215,7 +215,7 @@ const deleteContactById = async (req, res) => {
     try {
         await Contact.destroy({
             where: {
-                id_contact: req.params.id
+                id: req.params.id
             }
         }).then(contact => {
             res.status(200).json({
