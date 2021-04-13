@@ -9,6 +9,7 @@ const validateInput = require('../libs/validateInputs.libs').schemaInputContacts
 const jwt = require('jsonwebtoken')
 const Preference = require('../database/models/Preferences')
 const Photo = require('../database/models/urlPhotos')
+const City = require('../database/models/City')
 require('dotenv').config()
 
 const createContact = async (req, res) => {
@@ -78,6 +79,9 @@ const getContacts = async (req, res) => {
             }, {
                 model: Country,
                 attributes: ['id_country', 'name_country']
+            }, {
+                model:City,
+                attributes:['id_city', 'name_city']
             }, {
                 model: Company,
                 attributes: ['id_company', 'name_company', 'address']
