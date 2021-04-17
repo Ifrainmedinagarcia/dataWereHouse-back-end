@@ -80,8 +80,8 @@ const getContacts = async (req, res) => {
                 model: Country,
                 attributes: ['id_country', 'name_country']
             }, {
-                model:City,
-                attributes:['id_city', 'name_city']
+                model: City,
+                attributes: ['id_city', 'name_city']
             }, {
                 model: Company,
                 attributes: ['id_company', 'name_company', 'address']
@@ -166,6 +166,7 @@ const updateContactById = async (req, res) => {
         lastname_contact,
         email_contact,
         position,
+        id_preference,
         id_company,
         id_region,
         id_photo,
@@ -182,6 +183,7 @@ const updateContactById = async (req, res) => {
             lastname_contact,
             email_contact,
             position,
+            id_preference,
             id_photo,
             id_company,
             id_region,

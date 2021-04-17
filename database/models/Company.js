@@ -1,8 +1,5 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
-const Region = require('./Region')
-const Country =require('./Country')
-const City = require('./City')
 
 class Company extends Model { }
 
