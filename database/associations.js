@@ -34,7 +34,7 @@ Contact.belongsTo(Photo, { as:'Photo', foreignKey: 'id_photo' })
 User.belongsTo(Photo, { foreignKey: 'id_photo' })
 
 
-Contact.belongsTo(Company, { foreignKey: 'id_company'})
+Contact.belongsTo(Company, { foreignKey: 'id_company', onDelete: 'cascade', hooks: true})
 
 
 Contact.belongsTo(Region, { foreignKey: 'id_region', onDelete: 'cascade', hooks: true })

@@ -20,8 +20,7 @@ Contact.init({
         type: DataTypes.STRING
     },
     email_contact: {
-        type: DataTypes.STRING,
-        unique: true
+        type: DataTypes.STRING
     },
     position: {
         type: DataTypes.STRING

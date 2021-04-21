@@ -98,12 +98,11 @@ const getCompanyById = async (req, res) => {
 }
 
 const updateCompanyById = async (req, res) => {
-    const { name_company, id_region, id_country, address } = req.body
+    const { name_company, id_country, address } = req.body
 
     try {
         await Company.update({
             name_company,
-            id_region,
             id_country,
             address
         }, {
