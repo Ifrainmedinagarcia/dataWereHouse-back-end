@@ -3,7 +3,6 @@ const helmet = require('helmet')
 const sequelize = require('./database/db')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const PORT = 3001
 //require Routes
 const authRouter = require('./routers/auth.routes')
 const usersRouter = require('./routers/users.routes')
@@ -16,6 +15,9 @@ const uploadRouter = require('./routers/aws.router')
 const channelRouter = require('./routers/channel.routes')
 const preferenceReouter = require('./routers/preferences.routes')
 const commimentRouter = require('./routers/commiment.routes')
+require('dotenv').config()
+
+const PORT = process.env.PORT || 3001
 //Middleware
 const app = express()
 app.use(helmet())
