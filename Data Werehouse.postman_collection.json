@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "aec36eca-6e57-4858-8dfd-ebfe3328ce34",
 		"name": "Data Werehouse",
+		"description": "Herramienta que permite a una compañía de Marketing administrar todos los contactos de sus clientes para sus campañas.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -84,7 +85,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Sistema de autenticación de la app (registro y login)"
 		},
 		{
 			"name": "Users",
@@ -245,7 +247,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Sección de Usuarios donde podrás hacer un CRUD para brindar las credenciales de acceso a la plataforma"
 		},
 		{
 			"name": "Contacts",
@@ -416,7 +419,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "CRUD de contactos, aquí podrás crear, actualizar, leer o eliminar los contactos de cada usuario."
 		},
 		{
 			"name": "Region",
@@ -582,7 +586,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Puedes crear un CRUD de regiones. Estas regiones son las que irán asociadas a los países y a su vez a las compañías y contactos. Si eliminas una región estarías eliminando todo lo que dependa de ella."
 		},
 		{
 			"name": "Country",
@@ -756,7 +761,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Puedes crear un CRUD de Países. Estos países son las que irán asociados a las ciudades y a su vez a las compañías y contactos. Si eliminas un país estarías eliminando todo lo que dependa de el."
 		},
 		{
 			"name": "city",
@@ -922,7 +928,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Puedes crear un CRUD de ciudades. Estas ciudades son las que irán asociadas a las compañías y contactos. Si eliminas una cuidad estarías eliminando todo lo que dependa de ella."
 		},
 		{
 			"name": "Company",
@@ -992,7 +999,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Puedes crear un CRUD de compañías. Estas compañías son las que irán asociadas a los contactos. Si eliminas una compañía estarías eliminando todos contactos que  dependa de ella."
 		},
 		{
 			"name": "Upload",
@@ -1038,14 +1046,15 @@
 								"file",
 								"upload"
 							]
-						}
+						},
+						"description": "Este Endpoint es para subir imágenes al servidor de aws. Está hecho para subirlas imágenes de perfil de usuario e imágenes de perfil de contactos"
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "get",
+			"name": "Channels",
 			"item": [
 				{
 					"name": "/v1/api/channel",
@@ -1067,7 +1076,13 @@
 						}
 					},
 					"response": []
-				},
+				}
+			],
+			"description": "Obtener todos los canales de contacto para que el usuario pueda seleccionar el preferido de su contacto."
+		},
+		{
+			"name": "Preferences",
+			"item": [
 				{
 					"name": "/v1/api/preference",
 					"request": {
@@ -1090,7 +1105,13 @@
 						}
 					},
 					"response": []
-				},
+				}
+			],
+			"description": "Aquí podrás obtener dos opciones para imprimirla en el front (disponible, no molestar). Esto para que puedas asignarle a tu contacto y saber si puedes contactarlo o no."
+		},
+		{
+			"name": "Commitments",
+			"item": [
 				{
 					"name": "/v1/api/commiment",
 					"request": {
@@ -1114,7 +1135,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Aquí obtendrás los datos para asignarle el nivel de interés de tu contacto."
 		}
 	]
 }
