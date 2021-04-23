@@ -10,7 +10,7 @@ Herramienta que permite a una compañía de Marketing administrar todos los cont
 - Crear Países
 - Crear Ciudades
 - Crear Compañías
-- Adminitras contactos
+- Adminitrar contactos
 ----------------------------------------------------------------------------------------------------------
 
 1. Clonar el proyecto desde tu consola 🚀
@@ -66,7 +66,7 @@ recuerda que este token debe estar en una variable de entorno y el string debe e
 
 - DATABASE (Nombre que le pusiste a tu base de datos)
 
-- HOST (Es la dirección de acceso de tu base de datos, si trabajas en local normalmente es : localhost + el puerto). Ejemplo de puesto : 3000.
+- HOST (Es la dirección de acceso de tu base de datos, si trabajas en local normalmente es : localhost + el puerto). Ejemplo de puerto : 3000.
 
 ----------------------------------------------------------------------------------------------------------
 
@@ -84,4 +84,44 @@ node app.js
 
 ```
 https://documenter.getpostman.com/view/11695363/TzJx8c9H
+```
+
+7. Debes llenar previamente las siguientes tablas con información. Ya que son tablas que nunca cambiarán. Las debes configuar para poder realizar las peticiones necesarias. Desde DBeaver o cualquier gestor de bases de datos y luego de iniciar el servidor debes llenar las siguientes tablas:
+
+
+```
+INSERT into roles (name_role) values ('Admin');
+
+INSERT into roles (name_role) values ('User');
+
+
+INSERT into channels (name_channel) values ('Facebook')
+
+INSERT into channels (name_channel) values ('Instagram')
+
+INSERT into channels (name_channel) values ('Linkedin')
+
+INSERT into channels (name_channel) values ('Telegram')
+
+INSERT into channels (name_channel) values ('WhatsApp')
+
+INSERT into channels (name_channel) values ('Tik Tok')
+
+INSERT into channels (name_channel) values ('Teléfono')
+
+
+
+INSERT  into commitments(value_commitment) values ('25%')
+
+INSERT  into commitments(value_commitment) values ('50%')
+
+INSERT  into commitments(value_commitment) values ('75%')
+
+INSERT  into commitments(value_commitment) values ('100%');
+
+
+INSERT into preferences(name_preference) value('Disponible')
+
+INSERT into preferences(name_preference) value('No molestar')
+
 ```
